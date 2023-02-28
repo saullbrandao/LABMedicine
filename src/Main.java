@@ -1,5 +1,8 @@
+import views.InitialScreen;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("LABMedicine");
+        InitialScreen initialScreen = new InitialScreen();
+        initialScreen.show();
     }
 }
