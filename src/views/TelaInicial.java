@@ -31,7 +31,7 @@ public class TelaInicial {
     private void navigate(int option) {
         switch (option) {
             case 1 -> new CadastroPaciente().show();
-            case 2 -> System.out.println("Cadastro de Enfermeiro");
+            case 2 -> new CadastroEnfermeiro().show();
             case 3 -> System.out.println("Cadastro de Médico");
             case 4 -> System.out.println("Realização de Atendimento Médico");
             case 5 -> System.out.println("Atualização do Status de Atendimento do Paciente");
