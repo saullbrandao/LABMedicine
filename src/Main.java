@@ -1,8 +1,8 @@
-import views.InitialScreen;
+import views.TelaInicial;
 
 public class Main {
     public static void main(String[] args) {
-        InitialScreen initialScreen = new InitialScreen();
-        initialScreen.show();
+        TelaInicial telaInicial = new TelaInicial();
+        telaInicial.show();
     }
 }

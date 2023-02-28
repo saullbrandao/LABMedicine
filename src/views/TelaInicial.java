@@ -1,13 +1,10 @@
 package views;
 
-import models.Screen;
-
 import java.util.Scanner;
 
-public class InitialScreen extends Screen {
-    int selectedOption;
+public class TelaInicial {
+    int opcaoEscolhida;
 
-    @Override
     public void show() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -23,24 +20,23 @@ public class InitialScreen extends Screen {
                 System.out.println("6. Relatórios");
                 System.out.println("Número selecionado: ");
 
-                selectedOption = scanner.nextInt();
-                navigate(selectedOption);
+                opcaoEscolhida = scanner.nextInt();
+                navigate(opcaoEscolhida);
             } catch (Exception e) {
-                System.out.println("Opção inválida. Tente novamente.");
+                System.out.println("Opção inválida. Tente novamente.\n");
             }
         }
     }
 
-    @Override
-    protected void navigate(int option) {
+    private void navigate(int option) {
         switch (option) {
-            case 1 -> System.out.println("Cadastro de Paciente");
+            case 1 -> new CadastroPaciente().show();
             case 2 -> System.out.println("Cadastro de Enfermeiro");
             case 3 -> System.out.println("Cadastro de Médico");
             case 4 -> System.out.println("Realização de Atendimento Médico");
             case 5 -> System.out.println("Atualização do Status de Atendimento do Paciente");
             case 6 -> System.out.println("Relatórios");
-            default -> System.out.println("Opção inválida. Tente novamente.");
+            default -> System.out.println("Opção inválida. Tente novamente.\n");
 
         }
     }
