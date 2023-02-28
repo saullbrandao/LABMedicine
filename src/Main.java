@@ -1,5 +1,8 @@
+import views.TelaInicial;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("LABMedicine");
+        TelaInicial telaInicial = new TelaInicial();
+        telaInicial.show();
     }
 }
