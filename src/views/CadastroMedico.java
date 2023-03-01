@@ -12,12 +12,12 @@ import java.util.Scanner;
 
 public class CadastroMedico {
     Scanner scanner = new Scanner(System.in);
-    MedicoRepository medicoRepository = new MedicoRepository();
+    MedicoRepository medicoRepository = MedicoRepository.getInstance();
     MedicoService medicoService = new MedicoService(medicoRepository);
 
     public void show() {
         try {
-            System.out.println("Cadastro de Enfermeiro");
+            System.out.println("Cadastro de Médico");
             System.out.println("Nome completo: ");
             String nomeCompleto = scanner.nextLine();
 

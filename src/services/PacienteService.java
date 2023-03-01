@@ -3,6 +3,8 @@ package services;
 import models.Paciente;
 import repositories.PacienteRepository;
 
+import java.util.List;
+
 
 public class PacienteService {
     private final PacienteRepository pacienteRepository;
@@ -15,4 +17,7 @@ public class PacienteService {
         pacienteRepository.addPaciente(paciente);
     }
 
+    public List<Paciente> getPacientes() {
+        return pacienteRepository.getPacientes();
+    }
 }

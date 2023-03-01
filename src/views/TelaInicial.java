@@ -33,11 +33,10 @@ public class TelaInicial {
             case 1 -> new CadastroPaciente().show();
             case 2 -> new CadastroEnfermeiro().show();
             case 3 -> new CadastroMedico().show();
-            case 4 -> System.out.println("Realização de Atendimento Médico");
+            case 4 -> new AtendimentoMedico().show();
             case 5 -> System.out.println("Atualização do Status de Atendimento do Paciente");
             case 6 -> System.out.println("Relatórios");
             default -> System.out.println("Opção inválida. Tente novamente.\n");
-
         }
     }
 
