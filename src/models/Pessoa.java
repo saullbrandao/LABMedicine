@@ -23,6 +23,14 @@ public abstract class Pessoa {
         this.telefone = telefone;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
     public String getNomeCompleto() {
         return nomeCompleto;
     }

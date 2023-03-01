@@ -23,4 +23,16 @@ public class Medico extends Pessoa {
     public Boolean getAtivo() {
         return ativo;
     }
+
+    public EspecializacaoClinica getEspecializacaoClinica() {
+        return especializacaoClinica;
+    }
+
+    public String getInstituicaoDeEnsino() {
+        return instituicaoDeEnsino;
+    }
+
+    public String getCadastroCRM() {
+        return cadastroCRM;
+    }
 }

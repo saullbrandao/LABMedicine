@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class CadastroEnfermeiro {
     Scanner scanner = new Scanner(System.in);
-    EnfermeiroRepository enfermeiroRepository = new EnfermeiroRepository();
+    EnfermeiroRepository enfermeiroRepository = EnfermeiroRepository.getInstance();
     EnfermeiroService enfermeiroService = new EnfermeiroService(enfermeiroRepository);
 
     public void show() {
