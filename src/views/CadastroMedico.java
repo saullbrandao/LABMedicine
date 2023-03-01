@@ -17,7 +17,7 @@ public class CadastroMedico {
 
     public void show() {
         try {
-            System.out.println("Cadastro de Enfermeiro");
+            System.out.println("Cadastro de Médico");
             System.out.println("Nome completo: ");
             String nomeCompleto = scanner.nextLine();
 
