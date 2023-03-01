@@ -42,4 +42,12 @@ public class Paciente extends Pessoa {
     public void setValidadeConvenio(String validadeConvenio) {
         this.validadeConvenio = validadeConvenio;
     }
+
+    public void setStatusAtendimento(StatusAtendimento statusAtendimento) {
+        this.statusAtendimento = statusAtendimento;
+    }
+
+    public void addAtendimento() {
+        this.totalAtendimentos++;
+    }
 }

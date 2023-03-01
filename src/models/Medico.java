@@ -19,4 +19,8 @@ public class Medico extends Pessoa {
         this.especializacaoClinica = especializacaoClinica;
         this.ativo = ativo;
     }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
 }
