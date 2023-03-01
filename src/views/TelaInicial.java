@@ -32,7 +32,7 @@ public class TelaInicial {
         switch (option) {
             case 1 -> new CadastroPaciente().show();
             case 2 -> new CadastroEnfermeiro().show();
-            case 3 -> System.out.println("Cadastro de Médico");
+            case 3 -> new CadastroMedico().show();
             case 4 -> System.out.println("Realização de Atendimento Médico");
             case 5 -> System.out.println("Atualização do Status de Atendimento do Paciente");
             case 6 -> System.out.println("Relatórios");
