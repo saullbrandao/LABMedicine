@@ -19,4 +19,9 @@ public class MedicoService {
     public List<Medico> getMedicosAtivos() {
         return medicoRepository.getMedicos().stream().filter(Medico::getAtivo).toList();
     }
+
+    public List<Medico> getMedicos() {
+        return medicoRepository.getMedicos();
+    }
+
 }

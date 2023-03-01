@@ -50,4 +50,18 @@ public class Paciente extends Pessoa {
     public void addAtendimento() {
         this.totalAtendimentos++;
     }
+
+    public StatusAtendimento getStatusAtendimento() {
+        return statusAtendimento;
+    }
+
+    public String getConvenio() {
+        return convenio;
+    }
+
+    public int getTotalAtendimentos() {
+        return totalAtendimentos;
+    }
+
+
 }
