@@ -14,6 +14,7 @@ public class Medico extends Pessoa {
 
     public Medico(String nomeCompleto, Genero genero, LocalDate dataNascimento, String cpf, String telefone, String instituicaoDeEnsino, String cadastroCRM, EspecializacaoClinica especializacaoClinica, Boolean ativo) {
         super(nomeCompleto, genero, dataNascimento, cpf, telefone);
+        if (instituicaoDeEnsino.isBlank() || cadastroCRM.isBlank()) throw new IllegalArgumentException();
         this.instituicaoDeEnsino = instituicaoDeEnsino;
         this.cadastroCRM = cadastroCRM;
         this.especializacaoClinica = especializacaoClinica;
