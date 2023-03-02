@@ -16,11 +16,11 @@ public class MedicoRepository {
         return single_instance;
     }
 
-    public void addMedico(Medico medico) {
-        medicos.add(medico);
-    }
-
     public List<Medico> getMedicos() {
         return medicos;
+    }
+
+    public void addMedico(Medico medico) {
+        medicos.add(medico);
     }
 }

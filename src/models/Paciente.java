@@ -23,6 +23,18 @@ public class Paciente extends Pessoa {
         this.statusAtendimento = statusAtendimento;
     }
 
+    public StatusAtendimento getStatusAtendimento() {
+        return statusAtendimento;
+    }
+
+    public String getConvenio() {
+        return convenio;
+    }
+
+    public int getTotalAtendimentos() {
+        return totalAtendimentos;
+    }
+
     public void setAlergias(List<String> alergias) {
         this.alergias.addAll(alergias);
     }
@@ -50,18 +62,4 @@ public class Paciente extends Pessoa {
     public void addAtendimento() {
         this.totalAtendimentos++;
     }
-
-    public StatusAtendimento getStatusAtendimento() {
-        return statusAtendimento;
-    }
-
-    public String getConvenio() {
-        return convenio;
-    }
-
-    public int getTotalAtendimentos() {
-        return totalAtendimentos;
-    }
-
-
 }

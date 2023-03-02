@@ -10,9 +10,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class CadastroEnfermeiro {
-    Scanner scanner = new Scanner(System.in);
-    EnfermeiroRepository enfermeiroRepository = EnfermeiroRepository.getInstance();
-    EnfermeiroService enfermeiroService = new EnfermeiroService(enfermeiroRepository);
+    private final EnfermeiroRepository enfermeiroRepository = EnfermeiroRepository.getInstance();
+    private final EnfermeiroService enfermeiroService = new EnfermeiroService(enfermeiroRepository);
+    private final Scanner scanner = new Scanner(System.in);
 
     public void show() {
         try {

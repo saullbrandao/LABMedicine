@@ -11,11 +11,7 @@ public class MedicoService {
     public MedicoService(MedicoRepository medicoRepository) {
         this.medicoRepository = medicoRepository;
     }
-
-    public void addMedico(Medico medico) {
-        medicoRepository.addMedico(medico);
-    }
-
+    
     public List<Medico> getMedicosAtivos() {
         return medicoRepository.getMedicos().stream().filter(Medico::getAtivo).toList();
     }
@@ -24,4 +20,7 @@ public class MedicoService {
         return medicoRepository.getMedicos();
     }
 
+    public void addMedico(Medico medico) {
+        medicoRepository.addMedico(medico);
+    }
 }

@@ -6,12 +6,12 @@ import java.time.LocalDate;
 
 public abstract class Pessoa {
     private static int count = 1;
-    int id;
-    String nomeCompleto;
-    Genero genero;
-    LocalDate dataNascimento;
-    String cpf;
-    String telefone;
+    private int id;
+    private String nomeCompleto;
+    private Genero genero;
+    private LocalDate dataNascimento;
+    private String cpf;
+    private String telefone;
 
 
     public Pessoa(String nomeCompleto, Genero genero, LocalDate dataNascimento, String cpf, String telefone) {

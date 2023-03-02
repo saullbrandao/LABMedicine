@@ -11,9 +11,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class CadastroMedico {
-    Scanner scanner = new Scanner(System.in);
-    MedicoRepository medicoRepository = MedicoRepository.getInstance();
-    MedicoService medicoService = new MedicoService(medicoRepository);
+    private final MedicoRepository medicoRepository = MedicoRepository.getInstance();
+    private final MedicoService medicoService = new MedicoService(medicoRepository);
+    private final Scanner scanner = new Scanner(System.in);
 
     public void show() {
         try {

@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CadastroPaciente {
-    Scanner scanner = new Scanner(System.in);
-    PacienteRepository pacienteRepository = PacienteRepository.getInstance();
-    PacienteService pacienteService = new PacienteService(pacienteRepository);
+    private final PacienteRepository pacienteRepository = PacienteRepository.getInstance();
+    private final PacienteService pacienteService = new PacienteService(pacienteRepository);
+    private final Scanner scanner = new Scanner(System.in);
 
     public void show() {
         try {

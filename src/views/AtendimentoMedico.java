@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AtendimentoMedico {
-    MedicoRepository medicoRepository = MedicoRepository.getInstance();
-    PacienteRepository pacienteRepository = PacienteRepository.getInstance();
-    MedicoService medicoService = new MedicoService(medicoRepository);
-    PacienteService pacienteService = new PacienteService(pacienteRepository);
-    Scanner scanner = new Scanner(System.in);
+    private final MedicoRepository medicoRepository = MedicoRepository.getInstance();
+    private final PacienteRepository pacienteRepository = PacienteRepository.getInstance();
+    private final MedicoService medicoService = new MedicoService(medicoRepository);
+    private final PacienteService pacienteService = new PacienteService(pacienteRepository);
+    private final Scanner scanner = new Scanner(System.in);
 
     public void show() {
         try {

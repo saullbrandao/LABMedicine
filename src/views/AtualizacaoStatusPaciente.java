@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AtualizacaoStatusPaciente {
-    PacienteRepository pacienteRepository = PacienteRepository.getInstance();
-    PacienteService pacienteService = new PacienteService(pacienteRepository);
-    Scanner scanner = new Scanner(System.in);
-    List<Paciente> pacientes = pacienteService.getPacientes();
+    private final PacienteRepository pacienteRepository = PacienteRepository.getInstance();
+    private final PacienteService pacienteService = new PacienteService(pacienteRepository);
+    private final Scanner scanner = new Scanner(System.in);
+    private final List<Paciente> pacientes = pacienteService.getPacientes();
 
     public void show() {
         try {

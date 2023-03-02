@@ -3,7 +3,7 @@ package views;
 import java.util.Scanner;
 
 public class TelaInicial {
-    int opcaoEscolhida;
+    private int opcaoEscolhida;
 
     public void show() {
         while (true) {
@@ -35,7 +35,7 @@ public class TelaInicial {
             case 3 -> new CadastroMedico().show();
             case 4 -> new AtendimentoMedico().show();
             case 5 -> new AtualizacaoStatusPaciente().show();
-            case 6 -> new Relatorio().show();
+            case 6 -> new Relatorios().show();
             default -> System.out.println("Opção inválida. Tente novamente.\n");
         }
     }

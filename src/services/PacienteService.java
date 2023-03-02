@@ -13,11 +13,11 @@ public class PacienteService {
         this.pacienteRepository = pacienteRepository;
     }
 
-    public void addPaciente(Paciente paciente) {
-        pacienteRepository.addPaciente(paciente);
-    }
-
     public List<Paciente> getPacientes() {
         return pacienteRepository.getPacientes();
+    }
+
+    public void addPaciente(Paciente paciente) {
+        pacienteRepository.addPaciente(paciente);
     }
 }
