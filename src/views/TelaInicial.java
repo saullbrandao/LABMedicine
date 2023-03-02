@@ -1,12 +1,17 @@
 package views;
 
+import views.cadastro.CadastroEnfermeiro;
+import views.cadastro.CadastroMedico;
+import views.cadastro.CadastroPaciente;
+import views.relatorios.Relatorios;
+
 import java.util.Scanner;
 
 public class TelaInicial {
-    private int opcaoEscolhida;
 
     public void show() {
         while (true) {
+            int opcaoEscolhida;
             Scanner scanner = new Scanner(System.in);
 
             try {

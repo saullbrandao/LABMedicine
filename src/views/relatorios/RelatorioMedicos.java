@@ -1,4 +1,4 @@
-package views;
+package views.relatorios;
 
 import models.Medico;
 import repositories.MedicoRepository;
@@ -10,15 +10,33 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RelatorioMedicos {
-    private final MedicoRepository medicoRepository = MedicoRepository.getInstance();
-    private final MedicoService medicoService = new MedicoService(medicoRepository);
-    private final Scanner scanner = new Scanner(System.in);
+    private final MedicoService medicoService;
+    private final Scanner scanner;
+
+    public RelatorioMedicos() {
+        MedicoRepository medicoRepository = MedicoRepository.getInstance();
+        medicoService = new MedicoService(medicoRepository);
+        scanner = new Scanner(System.in);
+    }
 
     public void show() {
+        System.out.println("Relatório de médicos");
+
+        List<Medico> medicos = filtrarMedicos();
+
+        for (Medico medico : medicos) {
+            System.out.println("Código: " + medico.getId());
+            System.out.println("Nome: " + medico.getNomeCompleto());
+            System.out.println("Instituição de ensino: " + medico.getInstituicaoDeEnsino());
+            System.out.println("CRM: " + medico.getCadastroCRM());
+            System.out.println("Especialização clínica: " + medico.getEspecializacaoClinica().getDescricao());
+            System.out.println();
+        }
+    }
+
+    private List<Medico> filtrarMedicos() {
         List<Medico> medicos = new ArrayList<>();
         int i = 1;
-
-        System.out.println("Relatório de médicos");
 
         System.out.println("Especialização clínica:");
         for (EspecializacaoClinica especializacaoClinica : EspecializacaoClinica.values()) {
@@ -36,21 +54,10 @@ public class RelatorioMedicos {
             System.out.println("Todos");
         } else {
             especializacaoClinica = EspecializacaoClinica.getEspecializacaoClinica(opcaoEscolhida);
-            medicos.addAll(medicoService
-                    .getMedicos()
-                    .stream()
-                    .filter(medico -> medico.getEspecializacaoClinica().equals(especializacaoClinica))
-                    .toList());
+            medicos.addAll(medicoService.filtrarPorEspecializacao(especializacaoClinica));
             System.out.println(especializacaoClinica.getDescricao());
         }
 
-        for (Medico medico : medicos) {
-            System.out.println("Código: " + medico.getId());
-            System.out.println("Nome: " + medico.getNomeCompleto());
-            System.out.println("Instituição de ensino: " + medico.getInstituicaoDeEnsino());
-            System.out.println("CRM: " + medico.getCadastroCRM());
-            System.out.println("Especialização clínica: " + medico.getEspecializacaoClinica().getDescricao());
-            System.out.println();
-        }
+        return medicos;
     }
 }

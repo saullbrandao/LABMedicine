@@ -1,4 +1,4 @@
-package views;
+package views.cadastro;
 
 import models.Medico;
 import repositories.MedicoRepository;
@@ -10,10 +10,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class CadastroMedico {
-    private final MedicoRepository medicoRepository = MedicoRepository.getInstance();
-    private final MedicoService medicoService = new MedicoService(medicoRepository);
-    private final Scanner scanner = new Scanner(System.in);
+public class CadastroMedico extends CadastroPessoa {
+    private final MedicoService medicoService;
+    private final Scanner scanner;
+
+    public CadastroMedico() {
+        MedicoRepository medicoRepository = MedicoRepository.getInstance();
+        medicoService = new MedicoService(medicoRepository);
+        scanner = new Scanner(System.in);
+    }
 
     public void show() {
         try {
@@ -21,14 +26,8 @@ public class CadastroMedico {
             System.out.println("Nome completo: ");
             String nomeCompleto = scanner.nextLine();
 
-            System.out.println("Gênero: ");
-            System.out.println("1. Masculino");
-            System.out.println("2. Feminino");
-            System.out.println("3. Outro");
 
-            // Tive que usar Integer.parseInt() porque o scanner.nextInt() tava causando um 'loop' infinito
-            int escolhaGenero = Integer.parseInt(scanner.nextLine());
-            Genero genero = Genero.getGenero(escolhaGenero);
+            Genero genero = selecionarGenero();
 
             System.out.println("Data de Nascimento(Exemplo: 20/05/2002): ");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
@@ -61,16 +60,7 @@ public class CadastroMedico {
                 throw new IllegalArgumentException();
             }
 
-            System.out.println("Especialização clínica?");
-            System.out.println("1. Clínico Geral");
-            System.out.println("2. Anestesista");
-            System.out.println("3. Dermatologista");
-            System.out.println("4. Ginecologista");
-            System.out.println("5. Neurologia");
-            System.out.println("6. Pediatria");
-            System.out.println("7. Psiquiatria");
-            System.out.println("8. Ortopedia");
-            EspecializacaoClinica especializacaoClinica = EspecializacaoClinica.getEspecializacaoClinica(Integer.parseInt(scanner.nextLine()));
+            EspecializacaoClinica especializacaoClinica = selecionarEspecializacao();
 
             Medico medico = new Medico(nomeCompleto, genero, dataNascimento, cpf, telefone, instituicaoEnsino, cadastroCRM, especializacaoClinica, ativo);
 
@@ -81,4 +71,20 @@ public class CadastroMedico {
         }
 
     }
+
+    private EspecializacaoClinica selecionarEspecializacao() {
+        int i = 1;
+        System.out.println("Especialização clínica:");
+        for (EspecializacaoClinica especializacaoClinica : EspecializacaoClinica.values()) {
+            System.out.format("%d - %s", i, especializacaoClinica.getDescricao());
+            System.out.println();
+            i++;
+        }
+        System.out.println("Selecione uma das especializações acima: ");
+
+        int especializacaoEscolhida = Integer.parseInt(scanner.nextLine());
+        return EspecializacaoClinica.getEspecializacaoClinica(especializacaoEscolhida);
+    }
+
+
 }

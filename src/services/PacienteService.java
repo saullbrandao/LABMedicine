@@ -2,6 +2,7 @@ package services;
 
 import models.Paciente;
 import repositories.PacienteRepository;
+import utils.StatusAtendimento;
 
 import java.util.List;
 
@@ -19,5 +20,12 @@ public class PacienteService {
 
     public void addPaciente(Paciente paciente) {
         pacienteRepository.addPaciente(paciente);
+    }
+
+    public List<Paciente> filtrarPorStatus(StatusAtendimento status) {
+        return getPacientes()
+                .stream()
+                .filter(paciente -> paciente.getStatusAtendimento().equals(status))
+                .toList();
     }
 }

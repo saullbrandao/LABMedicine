@@ -1,4 +1,4 @@
-package views;
+package views.cadastro;
 
 import models.Enfermeiro;
 import repositories.EnfermeiroRepository;
@@ -9,10 +9,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class CadastroEnfermeiro {
-    private final EnfermeiroRepository enfermeiroRepository = EnfermeiroRepository.getInstance();
-    private final EnfermeiroService enfermeiroService = new EnfermeiroService(enfermeiroRepository);
-    private final Scanner scanner = new Scanner(System.in);
+public class CadastroEnfermeiro extends CadastroPessoa {
+    private final EnfermeiroService enfermeiroService;
+    private final Scanner scanner;
+
+    public CadastroEnfermeiro() {
+        EnfermeiroRepository enfermeiroRepository = EnfermeiroRepository.getInstance();
+        enfermeiroService = new EnfermeiroService(enfermeiroRepository);
+        scanner = new Scanner(System.in);
+    }
 
     public void show() {
         try {
@@ -20,13 +25,7 @@ public class CadastroEnfermeiro {
             System.out.println("Nome completo: ");
             String nomeCompleto = scanner.nextLine();
 
-            System.out.println("Gênero: ");
-            System.out.println("1 - Masculino");
-            System.out.println("2 - Feminino");
-            System.out.println("3 - Outro");
-            // Tive que usar Integer.parseInt() porque o scanner.nextInt() tava causando um loop infinito
-            int escolhaGenero = Integer.parseInt(scanner.nextLine());
-            Genero genero = Genero.getGenero(escolhaGenero);
+            Genero genero = selecionarGenero();
 
             System.out.println("Data de Nascimento(Exemplo: 20/05/2002): ");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");

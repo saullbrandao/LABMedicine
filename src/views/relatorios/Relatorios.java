@@ -1,4 +1,4 @@
-package views;
+package views.relatorios;
 
 import java.util.Scanner;
 

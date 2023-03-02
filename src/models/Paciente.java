@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Paciente extends Pessoa {
     private String contatoDeEmergencia;
-    private List<String> alergias = new ArrayList<>();
-    private List<String> cuidadosEspecificos = new ArrayList<>();
+    private final List<String> alergias = new ArrayList<>();
+    private final List<String> cuidadosEspecificos = new ArrayList<>();
     private String convenio;
     private String numeroConvenio;
     private String validadeConvenio;

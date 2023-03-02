@@ -1,4 +1,4 @@
-package views;
+package views.relatorios;
 
 import models.Pessoa;
 import repositories.EnfermeiroRepository;
@@ -13,15 +13,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RelatorioGeral {
-    private final PacienteRepository pacienteRepository = PacienteRepository.getInstance();
-    private final PacienteService pacienteService = new PacienteService(pacienteRepository);
-    private final MedicoRepository medicoRepository = MedicoRepository.getInstance();
-    private final MedicoService medicoService = new MedicoService(medicoRepository);
-    private final EnfermeiroRepository enfermeiroRepository = EnfermeiroRepository.getInstance();
-    private final EnfermeiroService enfermeiroService = new EnfermeiroService(enfermeiroRepository);
+    private final PacienteService pacienteService;
+    private final MedicoService medicoService;
+    private final EnfermeiroService enfermeiroService;
 
-    private final Scanner scanner = new Scanner(System.in);
-    
+    private final Scanner scanner;
+
+    public RelatorioGeral() {
+        EnfermeiroRepository enfermeiroRepository = EnfermeiroRepository.getInstance();
+        MedicoRepository medicoRepository = MedicoRepository.getInstance();
+        PacienteRepository pacienteRepository = PacienteRepository.getInstance();
+        enfermeiroService = new EnfermeiroService(enfermeiroRepository);
+        medicoService = new MedicoService(medicoRepository);
+        pacienteService = new PacienteService(pacienteRepository);
+        scanner = new Scanner(System.in);
+    }
+
     public void show() {
         System.out.println("1. Pacientes");
         System.out.println("2. Enfermeiros");

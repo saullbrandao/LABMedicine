@@ -2,6 +2,7 @@ package views;
 
 import models.Medico;
 import models.Paciente;
+import models.Pessoa;
 import repositories.MedicoRepository;
 import repositories.PacienteRepository;
 import services.MedicoService;
@@ -12,44 +13,47 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AtendimentoMedico {
-    private final MedicoRepository medicoRepository = MedicoRepository.getInstance();
-    private final PacienteRepository pacienteRepository = PacienteRepository.getInstance();
-    private final MedicoService medicoService = new MedicoService(medicoRepository);
-    private final PacienteService pacienteService = new PacienteService(pacienteRepository);
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+    private final List<Medico> medicosAtivos;
+    private final List<Paciente> pacientes;
+
+    public AtendimentoMedico() {
+        PacienteRepository pacienteRepository = PacienteRepository.getInstance();
+        PacienteService pacienteService = new PacienteService(pacienteRepository);
+        MedicoRepository medicoRepository = MedicoRepository.getInstance();
+        MedicoService medicoService = new MedicoService(medicoRepository);
+        medicosAtivos = medicoService.getMedicosAtivos();
+        pacientes = pacienteService.getPacientes();
+        scanner = new Scanner(System.in);
+    }
 
     public void show() {
         try {
-            List<Medico> medicosAtivos = medicoService.getMedicosAtivos();
-            List<Paciente> pacientes = pacienteService.getPacientes();
             System.out.println("Atendimento médico iniciado.");
             System.out.println("Selecione o médico: ");
+            Medico medicoSelecionado = (Medico) selecionarPessoa(medicosAtivos);
 
-            int i = 1;
-            for (Medico medico : medicosAtivos) {
-                System.out.format("%d - %s", i, medico.getNomeCompleto());
-                System.out.println();
-                i++;
-            }
-            int opcaoEscolhida = Integer.parseInt(scanner.nextLine());
-            Medico medicoSelecionado = medicosAtivos.get(opcaoEscolhida - 1);
+            System.out.println("Selecione o Paciente: ");
+            Paciente pacienteSelecionado = (Paciente) selecionarPessoa(pacientes);
 
-            i = 1;
-            for (Paciente paciente : pacientes) {
-                System.out.format("%d - %s", i, paciente.getNomeCompleto());
-                System.out.println();
-                i++;
-            }
-            opcaoEscolhida = Integer.parseInt(scanner.nextLine());
-            Paciente pacienteSelecionado = pacientes.get(opcaoEscolhida - 1);
-
-            System.out.println("Atendimento realizado com sucesso.");
             pacienteSelecionado.setStatusAtendimento(StatusAtendimento.EM_ATENDIMENTO);
             pacienteSelecionado.addAtendimento();
             medicoSelecionado.addAtendimento();
-            System.out.println("O status de atendimento do paciente está com " + StatusAtendimento.EM_ATENDIMENTO);
+            System.out.println("Atendimento realizado com sucesso.");
+            System.out.println("O status de atendimento do paciente está como " + StatusAtendimento.EM_ATENDIMENTO.getDescricao());
         } catch (Exception e) {
             System.out.println("Erro ao realizar atendimento médico. Tente novamente.\n");
         }
+    }
+
+    private Pessoa selecionarPessoa(List<? extends Pessoa> pessoas) {
+        int i = 1;
+        for (Pessoa pessoa : pessoas) {
+            System.out.format("%d - %s", i, pessoa.getNomeCompleto());
+            System.out.println();
+            i++;
+        }
+        int opcaoEscolhida = Integer.parseInt(scanner.nextLine());
+        return pessoas.get(opcaoEscolhida - 1);
     }
 }
