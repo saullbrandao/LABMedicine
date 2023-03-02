@@ -45,6 +45,8 @@ public class AtendimentoMedico {
 
             System.out.println("Atendimento realizado com sucesso.");
             pacienteSelecionado.setStatusAtendimento(StatusAtendimento.EM_ATENDIMENTO);
+            pacienteSelecionado.addAtendimento();
+            medicoSelecionado.addAtendimento();
             System.out.println("O status de atendimento do paciente está com " + StatusAtendimento.EM_ATENDIMENTO);
         } catch (Exception e) {
             System.out.println("Erro ao realizar atendimento médico. Tente novamente.\n");

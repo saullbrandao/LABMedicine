@@ -40,10 +40,6 @@ public class AtualizacaoStatusPaciente {
             opcaoEscolhida = Integer.parseInt(scanner.nextLine());
             StatusAtendimento statusAtendimento = StatusAtendimento.getStatus(opcaoEscolhida);
 
-            if (statusAtendimento.equals(StatusAtendimento.ATENDIDO)) {
-                pacienteSelecionado.addAtendimento();
-            }
-
             pacienteSelecionado.setStatusAtendimento(statusAtendimento);
 
             System.out.println("O paciente " + pacienteSelecionado.getNomeCompleto() + " está com o status " + statusAtendimento);

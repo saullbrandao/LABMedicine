@@ -36,4 +36,8 @@ public class Medico extends Pessoa {
     public String getCadastroCRM() {
         return cadastroCRM;
     }
+
+    public void addAtendimento() {
+        totalAtendimentos++;
+    }
 }
