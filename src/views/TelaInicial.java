@@ -1,12 +1,17 @@
 package views;
 
+import views.cadastro.CadastroEnfermeiro;
+import views.cadastro.CadastroMedico;
+import views.cadastro.CadastroPaciente;
+import views.relatorios.Relatorios;
+
 import java.util.Scanner;
 
 public class TelaInicial {
-    int opcaoEscolhida;
 
     public void show() {
         while (true) {
+            int opcaoEscolhida;
             Scanner scanner = new Scanner(System.in);
 
             try {
@@ -35,7 +40,7 @@ public class TelaInicial {
             case 3 -> new CadastroMedico().show();
             case 4 -> new AtendimentoMedico().show();
             case 5 -> new AtualizacaoStatusPaciente().show();
-            case 6 -> new Relatorio().show();
+            case 6 -> new Relatorios().show();
             default -> System.out.println("Opção inválida. Tente novamente.\n");
         }
     }

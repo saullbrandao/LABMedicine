@@ -10,10 +10,6 @@ public enum EspecializacaoClinica {
     PSIQUIATRIA("Psiquiatria"),
     ORTOPEDIA("Ortopedia");
 
-    public static EspecializacaoClinica getEspecializacaoClinica(int count) {
-        return EspecializacaoClinica.values()[count - 1];
-    }
-
     private final String descricao;
 
     EspecializacaoClinica(String descricao) {
@@ -22,5 +18,9 @@ public enum EspecializacaoClinica {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public static EspecializacaoClinica getEspecializacaoClinica(int count) {
+        return EspecializacaoClinica.values()[count - 1];
     }
 }

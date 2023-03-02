@@ -5,11 +5,7 @@ public enum StatusAtendimento {
     EM_ATENDIMENTO("Em andamento"),
     ATENDIDO("Atendido"),
     NAO_ATENDIDO("Não atendido");
-
-    public static StatusAtendimento getStatus(int count) {
-        return StatusAtendimento.values()[count - 1];
-    }
-
+    
     private final String descricao;
 
     StatusAtendimento(String descricao) {
@@ -18,5 +14,9 @@ public enum StatusAtendimento {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public static StatusAtendimento getStatus(int count) {
+        return StatusAtendimento.values()[count - 1];
     }
 }

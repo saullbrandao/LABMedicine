@@ -16,11 +16,11 @@ public class EnfermeiroRepository {
         return single_instance;
     }
 
-    public void addEnfermeiro(Enfermeiro enfermeiro) {
-        enfermeiros.add(enfermeiro);
-    }
-
     public List<Enfermeiro> getEnfermeiros() {
         return enfermeiros;
+    }
+
+    public void addEnfermeiro(Enfermeiro enfermeiro) {
+        enfermeiros.add(enfermeiro);
     }
 }

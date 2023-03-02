@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Paciente extends Pessoa {
     private String contatoDeEmergencia;
-    private List<String> alergias = new ArrayList<>();
-    private List<String> cuidadosEspecificos = new ArrayList<>();
+    private final List<String> alergias = new ArrayList<>();
+    private final List<String> cuidadosEspecificos = new ArrayList<>();
     private String convenio;
     private String numeroConvenio;
     private String validadeConvenio;
@@ -21,6 +21,18 @@ public class Paciente extends Pessoa {
         super(nomeCompleto, genero, dataNascimento, cpf, telefone);
         this.contatoDeEmergencia = contatoDeEmergencia;
         this.statusAtendimento = statusAtendimento;
+    }
+
+    public StatusAtendimento getStatusAtendimento() {
+        return statusAtendimento;
+    }
+
+    public String getConvenio() {
+        return convenio;
+    }
+
+    public int getTotalAtendimentos() {
+        return totalAtendimentos;
     }
 
     public void setAlergias(List<String> alergias) {
@@ -50,18 +62,4 @@ public class Paciente extends Pessoa {
     public void addAtendimento() {
         this.totalAtendimentos++;
     }
-
-    public StatusAtendimento getStatusAtendimento() {
-        return statusAtendimento;
-    }
-
-    public String getConvenio() {
-        return convenio;
-    }
-
-    public int getTotalAtendimentos() {
-        return totalAtendimentos;
-    }
-
-
 }
