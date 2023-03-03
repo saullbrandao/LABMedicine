@@ -10,10 +10,10 @@ import java.util.Scanner;
 public class TelaInicial {
 
     public void show() {
-        while (true) {
-            int opcaoEscolhida;
-            Scanner scanner = new Scanner(System.in);
+        int opcaoEscolhida = 0;
 
+        do {
+            Scanner scanner = new Scanner(System.in);
             try {
                 System.out.println("Bem vindo ao sistema LABMedicine");
                 System.out.println("Selecione uma das opções abaixo: ");
@@ -23,6 +23,7 @@ public class TelaInicial {
                 System.out.println("4. Realização de Atendimento Médico");
                 System.out.println("5. Atualização do Status de Atendimento do Paciente");
                 System.out.println("6. Relatórios");
+                System.out.println("0. Encerrar Programa");
                 System.out.println("Número selecionado: ");
 
                 opcaoEscolhida = scanner.nextInt();
@@ -30,7 +31,7 @@ public class TelaInicial {
             } catch (Exception e) {
                 System.out.println("Opção inválida. Tente novamente.\n");
             }
-        }
+        } while (opcaoEscolhida != 0);
     }
 
     private void navigate(int option) {
@@ -41,6 +42,7 @@ public class TelaInicial {
             case 4 -> new AtendimentoMedico().show();
             case 5 -> new AtualizacaoStatusPaciente().show();
             case 6 -> new Relatorios().show();
+            case 0 -> System.out.println("Encerrando programa...");
             default -> System.out.println("Opção inválida. Tente novamente.\n");
         }
     }
