@@ -19,6 +19,7 @@ public class Paciente extends Pessoa {
 
     public Paciente(String nomeCompleto, Genero genero, LocalDate dataNascimento, String cpf, String telefone, String contatoDeEmergencia, List<String> alergias, List<String> cuidadosEspecificos, String convenio, String numeroConvenio, String validadeConvenio, StatusAtendimento statusAtendimento) {
         super(nomeCompleto, genero, dataNascimento, cpf, telefone);
+        if (contatoDeEmergencia.isBlank()) throw new IllegalArgumentException();
         this.contatoDeEmergencia = contatoDeEmergencia;
         this.alergias = alergias;
         this.cuidadosEspecificos = cuidadosEspecificos;
