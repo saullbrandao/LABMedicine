@@ -7,7 +7,7 @@ import utils.EspecializacaoClinica;
 import utils.Genero;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CadastroMedico extends CadastroPessoa {
@@ -23,22 +23,8 @@ public class CadastroMedico extends CadastroPessoa {
     public void show() {
         try {
             System.out.println("Cadastro de Médico");
-            System.out.println("Nome completo: ");
-            String nomeCompleto = scanner.nextLine();
 
-
-            Genero genero = selecionarGenero();
-
-            System.out.println("Data de Nascimento(Exemplo: 20/05/2002): ");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
-
-            LocalDate dataNascimento = LocalDate.parse(scanner.nextLine(), formatter);
-
-            System.out.println("CPF: ");
-            String cpf = scanner.nextLine();
-
-            System.out.println("Telefone: ");
-            String telefone = scanner.nextLine();
+            Map<String, Object> dadosPessoa = getDadosPessoa();
 
             System.out.println("Instituição de ensino: ");
             String instituicaoEnsino = scanner.nextLine();
@@ -60,9 +46,19 @@ public class CadastroMedico extends CadastroPessoa {
                 throw new IllegalArgumentException();
             }
 
-            EspecializacaoClinica especializacaoClinica = selecionarEspecializacao();
+            EspecializacaoClinica especializacaoClinica = EspecializacaoClinica.selecionarEspecializacao();
 
-            Medico medico = new Medico(nomeCompleto, genero, dataNascimento, cpf, telefone, instituicaoEnsino, cadastroCRM, especializacaoClinica, ativo);
+            Medico medico = new Medico(
+                    (String) dadosPessoa.get("nomeCompleto"),
+                    (Genero) dadosPessoa.get("genero"),
+                    (LocalDate) dadosPessoa.get("dataNascimento"),
+                    (String) dadosPessoa.get("cpf"),
+                    (String) dadosPessoa.get("telefone"),
+                    instituicaoEnsino,
+                    cadastroCRM,
+                    especializacaoClinica,
+                    ativo
+            );
 
             medicoService.addMedico(medico);
             System.out.println("Médico cadastrado!\n");
@@ -71,20 +67,4 @@ public class CadastroMedico extends CadastroPessoa {
         }
 
     }
-
-    private EspecializacaoClinica selecionarEspecializacao() {
-        int i = 1;
-        System.out.println("Especialização clínica:");
-        for (EspecializacaoClinica especializacaoClinica : EspecializacaoClinica.values()) {
-            System.out.format("%d - %s", i, especializacaoClinica.getDescricao());
-            System.out.println();
-            i++;
-        }
-        System.out.println("Selecione uma das especializações acima: ");
-
-        int especializacaoEscolhida = Integer.parseInt(scanner.nextLine());
-        return EspecializacaoClinica.getEspecializacaoClinica(especializacaoEscolhida);
-    }
-
-
 }

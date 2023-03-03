@@ -7,9 +7,9 @@ import utils.Genero;
 import utils.StatusAtendimento;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CadastroPaciente extends CadastroPessoa {
@@ -25,21 +25,8 @@ public class CadastroPaciente extends CadastroPessoa {
     public void show() {
         try {
             System.out.println("Cadastro de Paciente");
-            System.out.println("Nome completo: ");
-            String nomeCompleto = scanner.nextLine();
 
-            Genero genero = selecionarGenero();
-
-            System.out.println("Data de Nascimento(Exemplo: 20/05/2002): ");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-            LocalDate dataNascimento = LocalDate.parse(scanner.nextLine(), formatter);
-
-            System.out.println("CPF: ");
-            String cpf = scanner.nextLine();
-
-            System.out.println("Telefone: ");
-            String telefone = scanner.nextLine();
+            Map<String, Object> dadosPessoa = getDadosPessoa();
 
             System.out.println("Contato de Emergência: ");
             String contatoEmergencia = scanner.nextLine();
@@ -59,14 +46,22 @@ public class CadastroPaciente extends CadastroPessoa {
             System.out.println("Validade do Convênio ");
             String validadeConvenio = scanner.nextLine();
 
-            StatusAtendimento statusAtendimento = selecionarStatus();
+            StatusAtendimento statusAtendimento = StatusAtendimento.selecionarStatus();
 
-            Paciente paciente = new Paciente(nomeCompleto, genero, dataNascimento, cpf, telefone, contatoEmergencia, statusAtendimento);
-            paciente.setAlergias(alergias);
-            paciente.setCuidadosEspecificos(cuidadosEspecificos);
-            paciente.setConvenio(convenio);
-            paciente.setNumeroConvenio(numeroConvenio);
-            paciente.setValidadeConvenio(validadeConvenio);
+            Paciente paciente = new Paciente(
+                    (String) dadosPessoa.get("nomeCompleto"),
+                    (Genero) dadosPessoa.get("genero"),
+                    (LocalDate) dadosPessoa.get("dataNascimento"),
+                    (String) dadosPessoa.get("cpf"),
+                    (String) dadosPessoa.get("telefone"),
+                    contatoEmergencia,
+                    alergias,
+                    cuidadosEspecificos,
+                    convenio,
+                    numeroConvenio,
+                    validadeConvenio,
+                    statusAtendimento
+            );
 
             pacienteService.addPaciente(paciente);
             System.out.println("Paciente cadastrado!\n");
@@ -74,21 +69,6 @@ public class CadastroPaciente extends CadastroPessoa {
             System.out.println("Erro ao cadastrar paciente. Tente novamente.\n");
         }
 
-    }
-
-    private StatusAtendimento selecionarStatus() {
-        int i = 1;
-        int opcaoEscolhida;
-
-        System.out.println("Status possíveis:");
-        for (StatusAtendimento status : StatusAtendimento.values()) {
-            System.out.format("%d - %s", i, status.getDescricao());
-            System.out.println();
-            i++;
-        }
-        System.out.println("Selecione um dos status acima: ");
-        opcaoEscolhida = Integer.parseInt(scanner.nextLine());
-        return StatusAtendimento.getStatus(opcaoEscolhida);
     }
 
     private List<String> criarLista() {

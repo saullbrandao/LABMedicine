@@ -2,24 +2,32 @@ package views.cadastro;
 
 import utils.Genero;
 
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public abstract class CadastroPessoa {
     Scanner scanner = new Scanner(System.in);
 
     public abstract void show();
 
-    protected Genero selecionarGenero() {
-        int i = 1;
-        System.out.println("Gêneros possíveis:");
-        for (Genero genero : Genero.values()) {
-            System.out.format("%d - %s", i, genero.getDescricao());
-            System.out.println();
-            i++;
-        }
-        System.out.println("Selecione um dos gêneros acima: ");
-        int escolhaGenero = Integer.parseInt(scanner.nextLine());
+    protected Map<String, Object> getDadosPessoa() {
+        System.out.println("Nome completo: ");
+        String nomeCompleto = scanner.nextLine();
 
-        return Genero.getGenero(escolhaGenero);
+        Genero genero = Genero.selecionarGenero();
+
+        System.out.println("Data de Nascimento(Exemplo: 20/05/2002): ");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+
+        LocalDate dataNascimento = LocalDate.parse(scanner.nextLine(), formatter);
+
+        System.out.println("CPF: ");
+        String cpf = scanner.nextLine();
+
+        System.out.println("Telefone: ");
+        String telefone = scanner.nextLine();
+
+        return Map.of("nomeCompleto", nomeCompleto, "genero", genero, "dataNascimento", dataNascimento, "cpf", cpf, "telefone", telefone);
     }
 }

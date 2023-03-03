@@ -23,7 +23,7 @@ public class AtualizacaoStatusPaciente {
         try {
             System.out.println("Atualizar status do paciente.");
             Paciente paciente = selecionarPaciente();
-            StatusAtendimento statusAtendimento = selecionarStatus();
+            StatusAtendimento statusAtendimento = StatusAtendimento.selecionarStatus();
 
             paciente.setStatusAtendimento(statusAtendimento);
             System.out.println("O paciente " + paciente.getNomeCompleto() + " está com o status " + statusAtendimento.getDescricao());
@@ -43,20 +43,5 @@ public class AtualizacaoStatusPaciente {
         System.out.println("Selecione o paciente a ser atualizado: ");
         int opcaoEscolhida = Integer.parseInt(scanner.nextLine());
         return pacientes.get(opcaoEscolhida - 1);
-    }
-
-    private StatusAtendimento selecionarStatus() {
-        int i = 1;
-        int opcaoEscolhida;
-
-        System.out.println("Status possíveis:");
-        for (StatusAtendimento status : StatusAtendimento.values()) {
-            System.out.format("%d - %s", i, status.getDescricao());
-            System.out.println();
-            i++;
-        }
-        System.out.println("Selecione um dos status acima: ");
-        opcaoEscolhida = Integer.parseInt(scanner.nextLine());
-        return StatusAtendimento.getStatus(opcaoEscolhida);
     }
 }
